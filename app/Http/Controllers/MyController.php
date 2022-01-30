@@ -61,8 +61,11 @@ class MyController extends Controller
         $StoreData->session = $request->session;
         $StoreData->phone = $request->phone;
         $StoreData->email = $request->email;
-        // $StoreData->password = $request->password;
-        $StoreData->password = $request->password = Hash::make('password');
+        $StoreData->password = Hash::make($request->password, [
+            'memory' => 1024,
+            'time' => 2,
+            'threads' => 2,
+        ]);
      
 
 
@@ -117,8 +120,11 @@ class MyController extends Controller
         $UpdateData->session = $request->session;
         $UpdateData->phone = $request->phone;
         $UpdateData->email = $request->email;
-        // $UpdateData->password = $request->password;
-        $UpdateData->password = $request->password = Hash::make('password');;
+        $UpdateData->password = Hash::make($request->password, [
+            'memory' => 1024,
+            'time' => 2,
+            'threads' => 2,
+        ]);
 
         if($request->hasfile('profile'))
         {
